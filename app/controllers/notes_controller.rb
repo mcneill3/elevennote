@@ -7,6 +7,7 @@ class NotesController < ApplicationController
   end
 
   def edit
+    @note = Note.find params[:id]
   end
 
   def create
@@ -15,12 +16,19 @@ class NotesController < ApplicationController
       flash.now[:notice] = t('note.flash.create.success')
       render :edit
     else
-      flash.now[:alert] = t('note.flash.creat.failure')
+      flash.now[:alert] = t('note.flash.create.failure')
       render :new
     end
   end
 
   def update
+    @note = Note.find params[:id]
+    if @note.save
+      flash.now[:notice] = t('note.flash.update.success')
+    else
+      flash.now[:alert] = t('note.flash.update.failure')
+    end
+      render :edit
   end
 
   def destroy

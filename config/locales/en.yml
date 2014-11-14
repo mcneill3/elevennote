@@ -36,5 +36,8 @@ en:
   note:
     flash:
       create:
-        success: "your note has been created!"
+        success: "Your note has been created!"
         failure: "There was a problem creating your note."
+      update:
+        success: "Saved!"
+        failure: "There was a problem saving your changes."
