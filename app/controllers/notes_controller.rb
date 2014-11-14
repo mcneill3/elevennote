@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
-  before_action :load_notes
   before_action :authorize_user
+  before_action :load_notes
   before_action :find_note, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -8,11 +8,11 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   def create
-    @note = Note.new note_params
+    @note = current_user.notes.new note_params
     set_flash_for @note.save
     render_or_redirect
   end
@@ -34,7 +34,7 @@ class NotesController < ApplicationController
   end
 
   def find_note
-    @note = Note.find params[:id]
+    @note = current_user.notes.find params[:id]
   end
 
   def set_flash_for(action_results)
@@ -54,7 +54,7 @@ class NotesController < ApplicationController
   end
 
   def load_notes
-    @notes = Note.all
+    @notes = current_user.notes.all if current_user.present?
   end
 
 end
