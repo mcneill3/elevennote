@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users, only: :create
-  resources :notes
+  resources :notes, execpt: :edit
   get 'sign_up' => 'users#new', as: :sign_up
 
   resources :sessions, only: [:create]
