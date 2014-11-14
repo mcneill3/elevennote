@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141113200741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "note_fields", force: true do |t|
+  create_table "notes", force: true do |t|
     t.string   "title"
     t.text     "body_html"
     t.text     "body_text"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141113200741) do
     t.datetime "updated_at"
   end
 
-  add_index "note_fields", ["user_id"], name: "index_note_fields_on_user_id", using: :btree
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
